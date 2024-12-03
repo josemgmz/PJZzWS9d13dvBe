@@ -1,0 +1,366 @@
+# ---------------------------------------------------------------------------------
+# Upgine                                                               
+# ---------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------
+# Third party library setup                                                                  
+# ---------------------------------------------------------------------------------
+
+ADD_DEFINITIONS(-D_GLFW_WIN32)
+ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
+
+FILE(GLOB GLFW_source
+   "../../deps/source/glfw/context.c"
+   "../../deps/source/glfw/egl_context.c"
+   "../../deps/source/glfw/init.c"
+   "../../deps/source/glfw/input.c"
+   "../../deps/source/glfw/monitor.c"
+   "../../deps/source/glfw/osmesa_context.c"
+   "../../deps/source/glfw/vulkan.c"
+   "../../deps/source/glfw/wgl_context.c"
+   "../../deps/source/glfw/win32_init.c"
+   "../../deps/source/glfw/win32_joystick.c"
+   "../../deps/source/glfw/win32_monitor.c"
+   "../../deps/source/glfw/win32_thread.c"
+   "../../deps/source/glfw/win32_time.c"
+   "../../deps/source/glfw/win32_window.c"
+   "../../deps/source/glfw/window.c"
+)
+
+FILE(GLOB IMGUI_source
+   "../../deps/source/imgui/imgui.cpp"
+   "../../deps/source/imgui/imgui_draw.cpp"
+   "../../deps/source/imgui/imgui_impl_glfw.cpp"
+   "../../deps/source/imgui/imgui_impl_opengl3.cpp"
+   "../../deps/source/imgui/imgui_widgets.cpp"
+)
+
+FILE(GLOB IMGUI_includes
+  "../../deps/source/imgui/imconfig.h"
+  "../../deps/source/imgui/imgui.h"
+  "../../deps/source/imgui/imgui_impl_glfw.h"
+  "../../deps/source/imgui/imgui_impl_opengl3.h"
+  "../../deps/source/imgui/imgui_internal.h"
+  "../../deps/source/imgui/imstb_rectpack.h"
+  "../../deps/source/imgui/imstb_textedit.h"
+  "../../deps/source/imgui/imstb_truetype.h"
+)
+
+FILE(GLOB STB_includes
+        "../../deps/include/stb/stb_image.h"
+        )
+
+FILE(GLOB GLFW_includes
+    "../../deps/include/"
+)
+
+FILE(GLOB GLAD_source
+   "../../deps/source/glad/glad.c"
+)
+
+
+
+FILE(GLOB GSLANG_source
+  "../../deps/source/glslang/CInterface/glslang_c_interface.cpp"
+  "../../deps/source/glslang/StandAlone/ResourceLimits.cpp"
+  "../../deps/source/glslang/MachineIndependent/Versions.cpp"
+  "../../deps/source/glslang/MachineIndependent/ShaderLang.cpp"
+  "../../deps/source/glslang/MachineIndependent/SymbolTable.cpp"
+  "../../deps/source/glslang/MachineIndependent/ParseHelper.cpp"
+  "../../deps/source/glslang/MachineIndependent/Scan.cpp"
+  "../../deps/source/glslang/MachineIndependent/PoolAlloc.cpp"
+  "../../deps/source/glslang/OGLCompilersDLL/InitializeDll.cpp"
+  "../../deps/source/glslang/glslang/OSDependent/Windows/ossource.cpp"
+  "../../deps/source/glslang/MachineIndependent/attribute.cpp"
+  "../../deps/source/glslang/MachineIndependent/Constant.cpp"
+  "../../deps/source/glslang/MachineIndependent/glslang_tab.cpp"
+  "../../deps/source/glslang/MachineIndependent/InfoSink.cpp"
+  "../../deps/source/glslang/MachineIndependent/Initialize.cpp"
+  "../../deps/source/glslang/MachineIndependent/Intermediate.cpp"
+  "../../deps/source/glslang/MachineIndependent/intermOut.cpp"
+  "../../deps/source/glslang/MachineIndependent/IntermTraverse.cpp"
+  "../../deps/source/glslang/MachineIndependent/iomapper.cpp"
+  "../../deps/source/glslang/MachineIndependent/limits.cpp"
+  "../../deps/source/glslang/MachineIndependent/linkValidate.cpp"
+  "../../deps/source/glslang/MachineIndependent/parseConst.cpp"
+  "../../deps/source/glslang/MachineIndependent/ParseContextBase.cpp"
+  "../../deps/source/glslang/MachineIndependent/propagateNoContraction.cpp"
+  "../../deps/source/glslang/MachineIndependent/reflection.cpp"
+  "../../deps/source/glslang/MachineIndependent/RemoveTree.cpp"
+  "../../deps/source/glslang/GenericCodeGen/CodeGen.cpp"
+  "../../deps/source/glslang/GenericCodeGen/Link.cpp"
+  "../../deps/source/glslang/MachineIndependent/preprocessor/Pp.cpp"
+  "../../deps/source/glslang/MachineIndependent/preprocessor/PpAtom.cpp"
+  "../../deps/source/glslang/MachineIndependent/preprocessor/PpContext.cpp"
+  "../../deps/source/glslang/MachineIndependent/preprocessor/PpScanner.cpp"
+  "../../deps/source/glslang/MachineIndependent/preprocessor/PpTokens.cpp"
+  "../../deps/source/glslang/SPIRV/CInterface/spirv_c_interface.cpp"
+  "../../deps/source/glslang/SPIRV/disassemble.cpp"
+  "../../deps/source/glslang/SPIRV/doc.cpp"
+  "../../deps/source/glslang/SPIRV/GlslangToSpv.cpp"
+  "../../deps/source/glslang/SPIRV/InReadableOrder.cpp"
+  "../../deps/source/glslang/SPIRV/Logger.cpp"
+  "../../deps/source/glslang/SPIRV/SpvBuilder.cpp"
+  "../../deps/source/glslang/SPIRV/SpvPostProcess.cpp"
+  "../../deps/source/glslang/SPIRV/SPVRemapper.cpp"
+  "../../deps/source/glslang/SPIRV/SpvTools.cpp"
+)
+
+FILE(GLOB ASSIMP_source
+        "../../deps/source/assimp/3DS/3DSConverter.cpp"
+        "../../deps/source/assimp/3DS/3DSExporter.cpp"
+        "../../deps/source/assimp/3DS/3DSLoader.cpp"
+        "../../deps/source/assimp/3MF/D3MFExporter.cpp"
+        "../../deps/source/assimp/3MF/D3MFImporter.cpp"
+        "../../deps/source/assimp/3MF/D3MFOpcPackage.cpp"
+        "../../deps/source/assimp/AC/ACLoader.cpp"
+        "../../deps/source/assimp/AMF/AMFImporter.cpp"
+        "../../deps/source/assimp/AMF/AMFImporter_Geometry.cpp"
+        "../../deps/source/assimp/AMF/AMFImporter_Material.cpp"
+        "../../deps/source/assimp/AMF/AMFImporter_Postprocess.cpp"
+        "../../deps/source/assimp/ASE/ASELoader.cpp"
+        "../../deps/source/assimp/ASE/ASEParser.cpp"
+        "../../deps/source/assimp/Assbin/AssbinExporter.cpp"
+        "../../deps/source/assimp/Assbin/AssbinLoader.cpp"
+        "../../deps/source/assimp/Assjson/json_exporter.cpp"
+        "../../deps/source/assimp/Assjson/mesh_splitter.cpp"
+        "../../deps/source/assimp/Assxml/AssxmlExporter.cpp"
+        "../../deps/source/assimp/B3D/B3DImporter.cpp"
+        "../../deps/source/assimp/Blender/BlenderBMesh.cpp"
+        "../../deps/source/assimp/Blender/BlenderCustomData.cpp"
+        "../../deps/source/assimp/Blender/BlenderDNA.cpp"
+        "../../deps/source/assimp/Blender/BlenderLoader.cpp"
+        "../../deps/source/assimp/Blender/BlenderModifier.cpp"
+        "../../deps/source/assimp/Blender/BlenderScene.cpp"
+        "../../deps/source/assimp/Blender/BlenderTessellator.cpp"
+        "../../deps/source/assimp/BVH/BVHLoader.cpp"
+        "../../deps/source/assimp/CApi/AssimpCExport.cpp"
+        "../../deps/source/assimp/CApi/CInterfaceIOWrapper.cpp"
+        "../../deps/source/assimp/COB/COBLoader.cpp"
+        "../../deps/source/assimp/Collada/ColladaExporter.cpp"
+        "../../deps/source/assimp/Collada/ColladaLoader.cpp"
+        "../../deps/source/assimp/Collada/ColladaParser.cpp"
+        "../../deps/source/assimp/Common/Assimp.cpp"
+        "../../deps/source/assimp/Common/BaseImporter.cpp"
+        "../../deps/source/assimp/Common/BaseProcess.cpp"
+        "../../deps/source/assimp/Common/Bitmap.cpp"
+        "../../deps/source/assimp/Common/CreateAnimMesh.cpp"
+        "../../deps/source/assimp/Common/DefaultIOStream.cpp"
+        "../../deps/source/assimp/Common/DefaultIOSystem.cpp"
+        "../../deps/source/assimp/Common/DefaultLogger.cpp"
+        "../../deps/source/assimp/Common/Exporter.cpp"
+        "../../deps/source/assimp/Common/Importer.cpp"
+        "../../deps/source/assimp/Common/ImporterRegistry.cpp"
+        "../../deps/source/assimp/Common/PostStepRegistry.cpp"
+        "../../deps/source/assimp/Common/RemoveComments.cpp"
+        "../../deps/source/assimp/Common/scene.cpp"
+        "../../deps/source/assimp/Common/SceneCombiner.cpp"
+        "../../deps/source/assimp/Common/ScenePreprocessor.cpp"
+        "../../deps/source/assimp/Common/SGSpatialSort.cpp"
+        "../../deps/source/assimp/Common/simd.cpp"
+        "../../deps/source/assimp/Common/SkeletonMeshBuilder.cpp"
+        "../../deps/source/assimp/Common/SpatialSort.cpp"
+        "../../deps/source/assimp/Common/SplitByBoneCountProcess.cpp"
+        "../../deps/source/assimp/Common/StandardShapes.cpp"
+        "../../deps/source/assimp/Common/Subdivision.cpp"
+        "../../deps/source/assimp/Common/TargetAnimation.cpp"
+        "../../deps/source/assimp/Common/Version.cpp"
+        "../../deps/source/assimp/Common/VertexTriangleAdjacency.cpp"
+        "../../deps/source/assimp/Common/ZipArchiveIOSystem.cpp"
+        "../../deps/source/assimp/CSM/CSMLoader.cpp"
+        "../../deps/source/assimp/DXF/DXFLoader.cpp"
+        "../../deps/source/assimp/FBX/FBXAnimation.cpp"
+        "../../deps/source/assimp/FBX/FBXBinaryTokenizer.cpp"
+        "../../deps/source/assimp/FBX/FBXConverter.cpp"
+        "../../deps/source/assimp/FBX/FBXDeformer.cpp"
+        "../../deps/source/assimp/FBX/FBXDocument.cpp"
+        "../../deps/source/assimp/FBX/FBXDocumentUtil.cpp"
+        "../../deps/source/assimp/FBX/FBXExporter.cpp"
+        "../../deps/source/assimp/FBX/FBXExportNode.cpp"
+        "../../deps/source/assimp/FBX/FBXExportProperty.cpp"
+        "../../deps/source/assimp/FBX/FBXImporter.cpp"
+        "../../deps/source/assimp/FBX/FBXMaterial.cpp"
+        "../../deps/source/assimp/FBX/FBXMeshGeometry.cpp"
+        "../../deps/source/assimp/FBX/FBXModel.cpp"
+        "../../deps/source/assimp/FBX/FBXNodeAttribute.cpp"
+        "../../deps/source/assimp/FBX/FBXParser.cpp"
+        "../../deps/source/assimp/FBX/FBXProperties.cpp"
+        "../../deps/source/assimp/FBX/FBXTokenizer.cpp"
+        "../../deps/source/assimp/FBX/FBXUtil.cpp"
+        "../../deps/source/assimp/glTF/glTFCommon.cpp"
+        "../../deps/source/assimp/glTF/glTFExporter.cpp"
+        "../../deps/source/assimp/glTF/glTFImporter.cpp"
+        "../../deps/source/assimp/glTF2/glTF2Exporter.cpp"
+        "../../deps/source/assimp/glTF2/glTF2Importer.cpp"
+        "../../deps/source/assimp/HMP/HMPLoader.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCBoolean.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCCurve.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCGeometry.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCLoader.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCMaterial.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCOpenings.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCProfile.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCReaderGen1_2x3.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCReaderGen2_2x3.cpp"
+        "../../deps/source/assimp/Importer/IFC/IFCUtil.cpp"
+        "../../deps/source/assimp/Importer/StepFile/StepFileGen1.cpp"
+        "../../deps/source/assimp/Importer/StepFile/StepFileGen2.cpp"
+        "../../deps/source/assimp/Importer/StepFile/StepFileGen3.cpp"
+        "../../deps/source/assimp/Importer/StepFile/StepFileImporter.cpp"
+        "../../deps/source/assimp/Importer/STEPParser/STEPFileEncoding.cpp"
+        "../../deps/source/assimp/Importer/STEPParser/STEPFileReader.cpp"
+        "../../deps/source/assimp/Irr/IRRLoader.cpp"
+        "../../deps/source/assimp/Irr/IRRMeshLoader.cpp"
+        "../../deps/source/assimp/Irr/IRRShared.cpp"
+        "../../deps/source/assimp/LWO/LWOAnimation.cpp"
+        "../../deps/source/assimp/LWO/LWOBLoader.cpp"
+        "../../deps/source/assimp/LWO/LWOLoader.cpp"
+        "../../deps/source/assimp/LWO/LWOMaterial.cpp"
+        "../../deps/source/assimp/LWS/LWSLoader.cpp"
+        "../../deps/source/assimp/Material/MaterialSystem.cpp"
+        "../../deps/source/assimp/MD2/MD2Loader.cpp"
+        "../../deps/source/assimp/MD3/MD3Loader.cpp"
+        "../../deps/source/assimp/MD5/MD5Loader.cpp"
+        "../../deps/source/assimp/MD5/MD5Parser.cpp"
+        "../../deps/source/assimp/MDC/MDCLoader.cpp"
+        "../../deps/source/assimp/MDL/MDLLoader.cpp"
+        "../../deps/source/assimp/MDL/MDLMaterialLoader.cpp"
+        "../../deps/source/assimp/MMD/MMDImporter.cpp"
+        "../../deps/source/assimp/MMD/MMDPmxParser.cpp"
+        "../../deps/source/assimp/MS3D/MS3DLoader.cpp"
+        "../../deps/source/assimp/NDO/NDOLoader.cpp"
+        "../../deps/source/assimp/NFF/NFFLoader.cpp"
+        "../../deps/source/assimp/Obj/ObjExporter.cpp"
+        "../../deps/source/assimp/Obj/ObjFileImporter.cpp"
+        "../../deps/source/assimp/Obj/ObjFileMtlImporter.cpp"
+        "../../deps/source/assimp/Obj/ObjFileParser.cpp"
+        "../../deps/source/assimp/OFF/OFFLoader.cpp"
+        "../../deps/source/assimp/Ogre/OgreBinarySerializer.cpp"
+        "../../deps/source/assimp/Ogre/OgreImporter.cpp"
+        "../../deps/source/assimp/Ogre/OgreMaterial.cpp"
+        "../../deps/source/assimp/Ogre/OgreStructs.cpp"
+        "../../deps/source/assimp/Ogre/OgreXmlSerializer.cpp"
+        "../../deps/source/assimp/Ply/PlyExporter.cpp"
+        "../../deps/source/assimp/Ply/PlyLoader.cpp"
+        "../../deps/source/assimp/Ply/PlyParser.cpp"
+        "../../deps/source/assimp/PostProcessing/CalcTangentsProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/ComputeUVMappingProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/ConvertToLHProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/DeboneProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/DropFaceNormalsProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/EmbedTexturesProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/FindDegenerates.cpp"
+        "../../deps/source/assimp/PostProcessing/FindInstancesProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/FindInvalidDataProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/FixNormalsStep.cpp"
+        "../../deps/source/assimp/PostProcessing/GenBoundingBoxesProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/GenFaceNormalsProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/GenVertexNormalsProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/ImproveCacheLocality.cpp"
+        "../../deps/source/assimp/PostProcessing/JoinVerticesProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/LimitBoneWeightsProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/MakeVerboseFormat.cpp"
+        "../../deps/source/assimp/PostProcessing/OptimizeGraph.cpp"
+        "../../deps/source/assimp/PostProcessing/OptimizeMeshes.cpp"
+        "../../deps/source/assimp/PostProcessing/PretransformVertices.cpp"
+        "../../deps/source/assimp/PostProcessing/ProcessHelper.cpp"
+        "../../deps/source/assimp/PostProcessing/RemoveRedundantMaterials.cpp"
+        "../../deps/source/assimp/PostProcessing/RemoveVCProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/ScaleProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/SortByPTypeProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/SplitLargeMeshes.cpp"
+        "../../deps/source/assimp/PostProcessing/TextureTransform.cpp"
+        "../../deps/source/assimp/PostProcessing/TriangulateProcess.cpp"
+        "../../deps/source/assimp/PostProcessing/ValidateDataStructure.cpp"
+        "../../deps/source/assimp/Q3BSP/Q3BSPFileImporter.cpp"
+        "../../deps/source/assimp/Q3BSP/Q3BSPFileParser.cpp"
+        "../../deps/source/assimp/Q3D/Q3DLoader.cpp"
+        "../../deps/source/assimp/Raw/RawLoader.cpp"
+        "../../deps/source/assimp/SIB/SIBImporter.cpp"
+        "../../deps/source/assimp/SMD/SMDLoader.cpp"
+        "../../deps/source/assimp/Step/StepExporter.cpp"
+        "../../deps/source/assimp/STL/STLExporter.cpp"
+        "../../deps/source/assimp/STL/STLLoader.cpp"
+        "../../deps/source/assimp/Terragen/TerragenLoader.cpp"
+        "../../deps/source/assimp/Unreal/UnrealLoader.cpp"
+        "../../deps/source/assimp/X/XFileExporter.cpp"
+        "../../deps/source/assimp/X/XFileImporter.cpp"
+        "../../deps/source/assimp/X/XFileParser.cpp"
+        "../../deps/source/assimp/X3D/FIReader.cpp"
+        "../../deps/source/assimp/X3D/X3DExporter.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Geometry2D.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Geometry3D.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Group.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Light.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Metadata.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Networking.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Postprocess.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Rendering.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Shape.cpp"
+        "../../deps/source/assimp/X3D/X3DImporter_Texturing.cpp"
+        "../../deps/source/assimp/X3D/X3DVocabulary.cpp"
+        "../../deps/source/assimp/XGL/XGLLoader.cpp"
+        "../../deps/source/assimp/EXTRA/adler32.c"
+        "../../deps/source/assimp/EXTRA/compress.c"
+        "../../deps/source/assimp/EXTRA/contrib/blast/blast.c"
+        "../../deps/source/assimp/EXTRA/contrib/minizip/ioapi.c"
+        # "../../deps/source/assimp/EXTRA/contrib/minizip/iowin32.c"
+        "../../deps/source/assimp/EXTRA/contrib/minizip/mztools.c"
+        "../../deps/source/assimp/EXTRA/contrib/minizip/unzip.c"
+        "../../deps/source/assimp/EXTRA/contrib/minizip/zip.c"
+        "../../deps/source/assimp/EXTRA/contrib/puff/puff.c"
+        "../../deps/source/assimp/EXTRA/crc32.c"
+        "../../deps/source/assimp/EXTRA/deflate.c"
+        "../../deps/source/assimp/EXTRA/infback.c"
+        "../../deps/source/assimp/EXTRA/inffast.c"
+        "../../deps/source/assimp/EXTRA/inflate.c"
+        "../../deps/source/assimp/EXTRA/inftrees.c"
+        "../../deps/source/assimp/EXTRA/zip.c"
+        "../../deps/source/assimp/EXTRA/trees.c"
+        "../../deps/source/assimp/EXTRA/uncompr.c"
+        "../../deps/source/assimp/EXTRA/zutil.c"
+        "../../deps/source/assimp/EXTRA/clipper.cpp"
+        "../../deps/source/assimp/EXTRA/irrXML.cpp"
+        "../../deps/source/assimp/EXTRA/advancing_front.cc"
+        "../../deps/source/assimp/EXTRA/cdt.cc"
+        "../../deps/source/assimp/EXTRA/shapes.cc"
+        "../../deps/source/assimp/EXTRA/sweep.cc"
+        "../../deps/source/assimp/EXTRA/sweep_context.cc"
+        )
+
+
+IF (WIN32)
+  FILE(GLOB GSLANG_OS_source
+   "../../deps/source/glslang/OSDependent/Windows/ossource.cpp")
+ELSE()
+  FILE(GLOB GSLANG_OS_source
+   "../../deps/source/glslang/OSDependent/Unix/ossource.cpp")
+ENDIF()
+
+
+
+FILE(GLOB source 
+    ${GLFW_source}
+    ${GLAD_source}
+    ${IMGUI_source}
+    ${GSLANG_source}
+    ${GSLANG_OS_source}
+)
+FILE(GLOB includes 
+    ${GLFW_includes}
+    ${IMGUI_includes}
+    ${STB_includes}
+)
+
+SET(LIBRARY_OUTPUT_PATH "../../../deps/library")
+
+# ---------------------------------------------------------------------------------
+# ExternalLibraries                                                                  
+# ---------------------------------------------------------------------------------
+
+ADD_LIBRARY(ExternalLibraries 
+    ${source} 
+    ${includes}
+)
+

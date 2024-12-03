@@ -1,0 +1,42 @@
+# Compiled Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.dll
+*.so
+*.dylib
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# IDEs and Folders
+.idea/
+bin/
+deps/library
+install/cmake_builder/cmake-build-debug
+install/cmake_builder/cmake-build-release
+scripts/.idea
+scripts/__pycache__
+scripts/venv
